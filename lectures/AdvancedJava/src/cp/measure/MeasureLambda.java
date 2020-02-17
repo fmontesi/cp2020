@@ -1,6 +1,8 @@
-package cp;
+package cp.measure;
 
-public class MeasureAnonymousClasses
+import cp.Utils;
+
+public class MeasureLambda
 {
 	public static int sum( int n )
 	{
@@ -20,15 +22,11 @@ public class MeasureAnonymousClasses
 	
 	public static void main( String[] args )
 	{
-		Utils.doAndMeasure( new Runnable() {
-			public void run() {
-				System.out.println( "Sum: " + sum( 5 ) );
-			}
+		Utils.doAndMeasure( () -> {
+			System.out.println( "Sum: " + sum( 5 ) );
 		} );
-		Utils.doAndMeasure( new Runnable() {
-			public void run() {
-				System.out.println( "Mult: " + mult( 5 ) );
-			}
+		Utils.doAndMeasure( () -> {
+			System.out.println( "Mult: " + mult( 5 ) );
 		} );
 	}
 }

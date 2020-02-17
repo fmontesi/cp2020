@@ -1,4 +1,6 @@
-package cp;
+package cp.measure;
+
+import cp.Utils;
 
 public class MeasureDedicatedClasses
 {
