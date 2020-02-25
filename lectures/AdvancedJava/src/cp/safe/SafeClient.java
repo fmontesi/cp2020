@@ -22,6 +22,7 @@ public class SafeClient
 		final BlackSafe<Integer> safe = new BlackSafe<>( password, 3 );
 		
 		safe.enter( password, content -> System.out.println( content * 2 ) );
+		// safe.enter( "Hey", content -> System.out.println( content * 2 ) );
 	}
 	
 	private static void mainBlackStringSafe()

@@ -1,12 +1,13 @@
 package cp;
 
-import cp.safe.lettercounter.LetterCounter;
+import cp.streams.Streams;
 
 public class Main
 {
 	public static void main( String[] args )
 	{
 //		SafeClient.main();
-		LetterCounter.main();
+//		LetterCounter.main();
+		Streams.main();
 	}
 }
