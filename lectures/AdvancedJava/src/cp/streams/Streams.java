@@ -3,7 +3,9 @@ package cp.streams;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -53,7 +55,7 @@ public class Streams
 					.map( line -> line.split( " " ) )
 					.map( words -> {
 						int n = 0;
-						for( String word : words) {
+						for( String word : words ) {
 							if ( word.equals( "et" ) ) {
 								n++;
 							}
@@ -62,19 +64,47 @@ public class Streams
 					} )
 					.reduce( 0, (n1, n2) -> n1 + n2 )
 			);
-//				.forEach( System.out::println );
+		
+			System.out.println(
+				Files.lines( Paths.get( "text1.txt" ) )
+					.flatMap( line -> Stream.of( line.split( " " ) ) )
+					.map( word -> word.equals( "et" ) ? 1 : 0 )
+					.reduce( 0, (n1, n2) -> n1 + n2 )
+			);
+			
+			System.out.println(
+				Files.lines( Paths.get( "text1.txt" ) )
+					.flatMap( line -> Stream.of( line.split( " " ) ) )
+					.filter( word -> word.equals( "et" ) )
+					.count()
+			);
+			
+			Map< String, Integer > results = new HashMap<>();
+			Files.lines( Paths.get( "text1.txt" ) )
+				.flatMap( s -> Stream.of( s.split( " " ) ) )
+				.forEach( word -> results.merge( word, 1, Integer::sum ) );
+			results.forEach( (key, value) -> System.out.println( key + ": " + value ) );
+			
+			Files.lines( Paths.get( "text1.txt" ) )
+				.flatMap( s -> Stream.of( s.split( " " ) ) )
+				.map( s -> {
+					HashMap< String, Integer > m = new HashMap<>();
+					m.put( s, 1 );
+					return m;
+				})
+				.reduce( new HashMap<String, Integer>(), Streams::merge )
+				.forEach( (key, value) -> System.out.println( key + ": " + value ) );
 		} catch( IOException e ) {
 			e.printStackTrace();
 		}
-
-		// count
-		// sort
-		// reduce strings
-		// map
-		// reduce ints
-		// lines
-		// csv
-		// flatMap
+	}
+	
+	private static HashMap< String, Integer > merge( HashMap< String, Integer > m1, HashMap< String, Integer > m2 )
+	{
+		HashMap< String, Integer > result = new HashMap<>();
+		result.putAll( m1 );
+		m2.forEach( (key, value) -> result.merge( key, value, Integer::sum ) );
+		return result;
 	}
 	
 	private static void printNamesStartingWithK( Stream<String> stream )
