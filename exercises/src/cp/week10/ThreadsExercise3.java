@@ -7,7 +7,7 @@ package cp.week10;
 public class ThreadsExercise3
 {
 	/*
-	Modify the SynchronizedMap2T example such that:
+	Modify the threads/cp/SynchronizedMap2T example such that:
 	- There are now two maps (instead of just one) for accumulating results, one for each thread.
 	- Each thread uses only its own map, without synchronizing on it.
 	- After the threads terminate, create a new map where you merge the results of the two dedicated maps.
