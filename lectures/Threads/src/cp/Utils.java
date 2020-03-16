@@ -13,6 +13,7 @@ public class Utils
 	public static void benchmark( Runnable runnable )
 	{
 		runnable.run();
+		runnable.run();
 		long t1 = System.currentTimeMillis();
 		runnable.run();
 		long t2 = System.currentTimeMillis();
