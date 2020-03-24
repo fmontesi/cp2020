@@ -40,17 +40,17 @@ public class Exam {
 				System.out.println("Available commands: help, shortestWord, longestWord, wordStartingWith, or findWord.\nFor example, try:\n\tjava Exam shortestWord data");
 				break;
 			case "shortestWord":
-				checkArguments(args.length == 2, "Usage: java Exam shortestWord <directory>");
-				String shortestWord = shortestWord(Paths.get(args[3]));
+				checkArguments(args.length == 2, "Usage: java Exam.java shortestWord <directory>");
+				String shortestWord = shortestWord(Paths.get(args[1]));
 				System.out.println("The shortest word found is " + shortestWord);
 				break;
 			case "longestWord":
-				checkArguments(args.length == 2, "Usage: java Exam longestWord <directory>");
-				String longestWord = longestWord(Paths.get(args[3]));
+				checkArguments(args.length == 2, "Usage: java Exam.java longestWord <directory>");
+				String longestWord = longestWord(Paths.get(args[1]));
 				System.out.println("The longest word found is " + longestWord);
 				break;
 			case "wordStartingWith":
-				checkArguments(args.length == 4, "Usage: java Exam wordStartingWith <directory> <prefix> <true|false>");
+				checkArguments(args.length == 4, "Usage: java Exam.java wordStartingWith <directory> <prefix> <true|false>");
 				Optional<LocatedWord> locatedWordOptional = wordStartingWith(Paths.get(args[1]), args[2], Boolean.parseBoolean(args[3]));
 				locatedWordOptional.ifPresentOrElse(
 					locatedWord -> System.out.println("Found " + locatedWord.word + " in " + locatedWord.filepath ),
@@ -58,7 +58,7 @@ public class Exam {
 				);
 				break;
 			case "findWord":
-				checkArguments(args.length == 4, "Usage: java Exam findWord <directory> <limit>");
+				checkArguments(args.length == 4, "Usage: java Exam.java findWord <directory> <word> <limit>");
 				int limit = Integer.parseInt(args[3]);
 				List<WordLocation> locations = findWord(Paths.get(args[1]), args[2], limit);
 				if (locations.size() > limit) {
@@ -68,7 +68,7 @@ public class Exam {
 				locations.forEach(location -> System.out.println(location.filepath + ":" + location.line));
 				break;
 			default:
-				System.out.println("Unrecognised command: " + args[0] + ". Try java Exam help.");
+				System.out.println("Unrecognised command: " + args[0] + ". Try java Exam.java help.");
 				break;
 		}
 	}
