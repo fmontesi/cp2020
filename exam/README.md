@@ -7,7 +7,7 @@ You can find a list of common mistakes that people do in the exam for this cours
 ## Instructions
 
 To prepare for the exam, follow these steps.
-- Download the file `Exam.java` from here: [https://raw.githubusercontent.com/fmontesi/cp2019/master/exam/exam-project/src/Exam.java](https://raw.githubusercontent.com/fmontesi/cp2019/master/exam/exam-project/src/Exam.java)
+- Download the file `Exam.java` from here: [https://raw.githubusercontent.com/fmontesi/cp2020/master/exam/exam-project/src/Exam.java](https://raw.githubusercontent.com/fmontesi/cp2020/master/exam/exam-project/src/Exam.java)
 - Read the content of `Exam.java`, which describes the task that you have to complete to pass the exam (the file contains instructions also for students taking the re-exam for the old 5 ECTS version of this course).
 - Watch the video lecture `10-Exam` on Blackboard, which gives a walkthrough of the exam.
 
