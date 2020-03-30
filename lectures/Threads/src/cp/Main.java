@@ -4,6 +4,8 @@ public class Main
 {
 	public static void main( String[] args )
 	{
-		Walk.main();
+//		Utils.doAndMeasure( Walk::main );
+//		Utils.doAndMeasure( WalkBlockingDeque::main );
+		Utils.doAndMeasure( WalkExecutor::main );
 	}
 }

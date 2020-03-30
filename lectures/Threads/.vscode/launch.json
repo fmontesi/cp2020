@@ -1,0 +1,33 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "java",
+			"name": "CodeLens (Launch) - Main",
+			"request": "launch",
+			"mainClass": "cp.Main",
+			"projectName": "Threads_ca312ae",
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "java",
+			"name": "Debug (Launch) - Current File",
+			"request": "launch",
+			"console": "internalConsole",
+			"mainClass": "${file}",
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "java",
+			"name": "Debug (Launch)-App<Threads>",
+			"request": "launch",
+			"mainClass": "cp.Main",
+			"console": "internalConsole",
+			"projectName": "Threads",
+			"cwd": "${workspaceFolder}"
+		}
+	]
+}

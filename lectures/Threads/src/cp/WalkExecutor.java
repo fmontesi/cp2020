@@ -4,36 +4,39 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-public class Walk
+public class WalkExecutor
 {
 	public static void main()
 	{
 		// word -> number of times it appears over all files
 		Map< String, Integer > occurrences = new ConcurrentHashMap<>();
-		List< Thread > threads = new ArrayList<>();
+//		ExecutorService executor = Executors.newCachedThreadPool();
+		ExecutorService executor = Executors.newFixedThreadPool( Runtime.getRuntime().availableProcessors() );
 		
 		try {
 			Files.walk( Paths.get( "data" ) )
 				.filter( Files::isRegularFile )
-				.map( path -> new Thread( () -> computeOccurrences( path, occurrences ) ) )
-				.forEach( thread -> threads.add( thread ) );
+				.forEach( filepath -> {
+					executor.submit( () -> {
+						computeOccurrences( filepath, occurrences );
+					} );
+				} );
 		} catch( IOException e ) {
 			e.printStackTrace();
 		}
 		
-		threads.forEach( Thread::start );
-		threads.forEach( t -> {
-			try {
-				t.join();
-			} catch( InterruptedException e ) {
-				e.printStackTrace();
-			}
-		} );
+		try {
+			executor.shutdown();
+			executor.awaitTermination( 1, TimeUnit.DAYS );
+		} catch( InterruptedException e ) {
+			e.printStackTrace();
+		}
 		
 //		occurrences.forEach( (word, n) -> System.out.println( word + ": " + n ) );
 	}
