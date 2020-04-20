@@ -8,9 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class WalkCompletableFuture
@@ -19,7 +16,6 @@ public class WalkCompletableFuture
 	{
 		// word -> number of times it appears over all files
 		Map< String, Integer > occurrences = new ConcurrentHashMap<>();
-		ExecutorService executor = Executors.newWorkStealingPool();
 		
 		try {
 			CompletableFuture< Void >[] futures =
@@ -31,15 +27,10 @@ public class WalkCompletableFuture
 								fileOccurrences.forEach( (word, n) -> occurrences.merge( word, n, Integer::sum ) )
 							)
 					).collect( Collectors.toList() ).toArray( new CompletableFuture[0] );
-			CompletableFuture.allOf( futures ).join();
+			CompletableFuture
+				.allOf( futures )
+				.join();
 		} catch( IOException e ) {
-			e.printStackTrace();
-		}
-
-		try {
-			executor.shutdown();
-			executor.awaitTermination( 1, TimeUnit.DAYS );
-		} catch( InterruptedException e ) {
 			e.printStackTrace();
 		}
 		

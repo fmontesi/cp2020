@@ -59,7 +59,7 @@ public class WalkCompletionService
 		} catch( IOException e ) {
 			e.printStackTrace();
 		}
-		
+
 		return occurrences;
 	}
 }
