@@ -32,7 +32,7 @@ public class WalkParallelStream5
 						word -> 1,
 						Integer::sum
 					) );
-			occurrences.forEach( (word, n) -> System.out.println( word + ": " + n ) );
+//			occurrences.forEach( (word, n) -> System.out.println( word + ": " + n ) );
 		} catch( IOException e ) {
 			e.printStackTrace();
 		}

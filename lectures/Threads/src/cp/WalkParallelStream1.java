@@ -13,12 +13,12 @@ public class WalkParallelStream1
 	{
 		// word -> number of times it appears over all files
 		Map< String, Integer > occurrences = new ConcurrentHashMap<>();
-		
+
 		try {
 			Files
 				.walk( Paths.get( "data" ) )
-				.filter( Files::isRegularFile )
 				.parallel()
+				.filter( Files::isRegularFile )
 				.forEach( filepath -> computeOccurrences( filepath, occurrences ) );
 		} catch( IOException e ) {
 			e.printStackTrace();

@@ -20,8 +20,7 @@ public class WalkParallelStream2
 				.walk( Paths.get( "data" ) )
 				.filter( Files::isRegularFile )
 				.collect( Collectors.toList() )
-				.stream()
-				.parallel()
+				.parallelStream() // .stream().parallel()
 				.forEach( filepath -> computeOccurrences( filepath, occurrences ) );
 		} catch( IOException e ) {
 			e.printStackTrace();
