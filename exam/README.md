@@ -38,7 +38,7 @@ to give an implementation for that particular method.
 
 ## Evaluation criteria
 
-Evaluation will be based on the following criteria. A more detailed rubric will be posted soon.
+Evaluation will be based on the following criteria.
 
 - *Correctness:* are the methods implemented as requested, and do they operate correctly?
 - *Efficiency:* is concurrency used efficiently to achieve better performance than a  sequential program?
