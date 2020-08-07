@@ -187,8 +187,10 @@ public class Exam {
 
 	/** Returns a list of locations at which the given word has been found.
 	 * 
-	 * The returned list should contain elements only for words longer than 5. All
-	 * words longer than 5 should not have corresponding elements in the list.
+	 * The returned list should contain elements only for words found after the 4th line in
+	 * any text file (see the definition of WordLocation, which contains the line at which a word is found).
+	 * That is, words found in lines 1, 2, 3, or 4 should not have corresponding elements
+	 * in the list.
 	 * 
 	 * This method recursively visits a directory to find text files
 	 * contained in it and its subdirectories (and the subdirectories of these
